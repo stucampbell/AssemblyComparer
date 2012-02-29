@@ -1,0 +1,6 @@
+_Resharper.*
+*.suo
+*.csproj.user
+asmcomp/bin
+asmcomp/obj
+
