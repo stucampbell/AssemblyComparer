@@ -3,4 +3,5 @@ _Resharper.*
 *.csproj.user
 asmcomp/bin
 asmcomp/obj
-
+AssemblyCompare.Tests/bin
+AssemblyCompare.Tests/obj
