@@ -1,7 +1,7 @@
 _Resharper.*
 *.suo
 *.csproj.user
-asmcomp/bin
-asmcomp/obj
-AssemblyCompare.Tests/bin
-AssemblyCompare.Tests/obj
+AssemblyComparer.Console/bin
+AssemblyComparer.Console/obj
+AssemblyComparer.Tests/bin
+AssemblyComparer.Tests/obj
