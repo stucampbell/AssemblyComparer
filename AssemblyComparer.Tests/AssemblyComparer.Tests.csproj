@@ -43,19 +43,25 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CliAssemblyHasherTests.cs" />
     <Compile Include="ConverterTests.cs" />
     <Compile Include="DefaultHasherTests.cs" />
     <Compile Include="HasherFactoryTests.cs" />
+    <Compile Include="IlHasherTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\Tools\ildasm.exe">
+      <Link>ildasm.exe</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Samples\CliDifferent.build1\asmcomp.exe" />
     <Content Include="Samples\CliIdentical.build1\asmcomp.exe" />
     <Content Include="Samples\CliIdentical.build2\asmcomp.exe" />
+    <Content Include="Samples\WeirdDifference\machine1.dll" />
+    <Content Include="Samples\WeirdDifference\machine2.dll" />
     <Content Include="Samples\Win32Different.build1\win32example.exe" />
     <Content Include="Samples\Win32Identical.build1\win32example.exe" />
     <Content Include="Samples\Win32Identical.build2\win32example.exe" />
@@ -64,10 +70,6 @@
     <ProjectReference Include="..\AssemblyComparer.Console\AssemblyComparer.Console.csproj">
       <Project>{5DFA851B-D651-4B7D-9AD4-60704A52F564}</Project>
       <Name>AssemblyComparer.Console</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Mono.Cecil\Mono.Cecil.csproj">
-      <Project>{D68133BD-1E63-496E-9EDE-4FBDBF77B486}</Project>
-      <Name>Mono.Cecil</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

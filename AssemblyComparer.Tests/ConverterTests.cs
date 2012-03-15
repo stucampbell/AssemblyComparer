@@ -8,9 +8,6 @@ namespace AssemblyComparer.Tests
 {
     public class ConverterTests
     {
-        private TextWriter normalOutput;
-        private readonly StringWriter testingConsole;
-        private readonly StringBuilder testOutput;
         
         [Fact]
         public void given_source_and_target_paths_the_program_creates_the_target_file()

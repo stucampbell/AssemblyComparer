@@ -19,7 +19,7 @@ namespace AssemblyComparer.Tests
         }
 
         [Fact]
-        public void creates_cli_assembly_hasher_for_cli_exe()
+        public void creates_il_hasher_for_cli_exe()
         {
             // arrange
 
@@ -27,7 +27,7 @@ namespace AssemblyComparer.Tests
             var hasher = HasherFactory.CreateHasher(@"..\..\Samples\CliIdentical.build1\asmcomp.exe");
 
             // assert
-            Assert.IsAssignableFrom<CliAssemblyHasher>(hasher);
+            Assert.IsAssignableFrom<IlHasher>(hasher);
 
         }
     }

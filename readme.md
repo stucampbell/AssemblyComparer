@@ -10,18 +10,23 @@ compiler bakes in some unique tokens (e.g. a timestamp) every time it does a bui
 This tool gets around this by ignoring those unique tokens when producing a hash of the assembly.
 
 ## How?
-A bit of googling led me to [this thread](https://groups.google.com/forum/#!msg/mono-cecil/AGq0LfBdqjo/jiG6aSNxlUcJ) 
-on the Mono.Cecil Google group. The guys there had done all the leg work, all I needed to do was fork 
-the Mono.Cecil project, make the changes to implement Florian's suggestion, and create a simple 
-console app that lets you use the build-independent hash when comparing files.
+The tool, which is a simple console app, uses ILDASM to decompile each binary, and then uses regular expression 
+replacements to canonicalise some build-specific tokens before computing the MD5 hash of the decompiled output. 
+The MD5 hashes of two assemblies can then easily be compared.
+
+I originally tried to modify the binaries in-memory before computing a hash of them. I was using Mono.Cecil 
+(inspired by [this thread](https://groups.google.com/forum/#!msg/mono-cecil/AGq0LfBdqjo/jiG6aSNxlUcJ)) and it seemed
+to work really well. Unfortunately, builds of the same source code on different machines can result in
+quite unpredictable differences in the compiled output. It is probably not impossible to get this tool 
+working with the original binary comparison approach, but it seemed like an increasingly daunting task.
+
+The downside of the new, decompilation-based approach is that it is **A LOT** slower. On the upside, it now works! :)
 
 ## Building it
 1. Clone the project
-1. Run `git submodule init`
-1. Run `git submodule update`
 1. Run `build.bat`. 
 
-If you want to build it from Visual Studio, make sure you use one of the non-default build configirations, e.g. `net_4_0_release`
+If you want to build it from Visual Studio, make sure you use one of the non-default build configurations, e.g. `net_4_0_release`
 
 ## Using it
 This rudimentary implementation is designed to be used with a diff tool like [Beyond Compare](http://www.scootersoftware.com/index.php). 
@@ -52,6 +57,8 @@ e.g. `d:\utilities\AssemblyComparer\asmcomp.exe %s %t`
 1. Choose **Fixed** and leave the the other fields as they are.
 1. Make sure that this file format is *above* any others with a *.exe or *.dll mask. 
 1. Choose **Save**
+
+When comparing you need to select "**Rule-based comparison**".
 
 And you're done.
 

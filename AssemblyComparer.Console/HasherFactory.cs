@@ -9,7 +9,7 @@ namespace AssemblyComparer.Console
         {
             if (IsCliAssembly(sourcePath))
             {
-                return new CliAssemblyHasher();
+                return new IlHasher();
             }
             return new DefaultHasher();
         }
