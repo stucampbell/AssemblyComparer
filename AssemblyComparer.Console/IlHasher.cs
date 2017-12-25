@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace AssemblyComparer.Console
 {
-    public class IlHasher: IHasher
+    public class IlHasher : IHasher
     {
         /// <summary>
         /// This regex prequalifies a decompiled line for further processing (anonymization) by
@@ -20,7 +20,7 @@ namespace AssemblyComparer.Console
         /// </summary>
         static readonly Regex PotentiallyUnsafeLineRegex = new Regex("(MVID|Image base|DISASSEMBLY COMPLETE|PrivateImplementationDetails|data cil|ver)", RegexOptions.Multiline);
 
-    #region  Anonymization regexes
+        #region  Anonymization regexes
 
         static readonly Regex MvidRegexp = new Regex("(?<=^//\\sMVID:\\s*)(?:(\\()|(\\{))?[A-Z0-9]{8}-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{12}(?(1)\\))(?(2)\\})", RegexOptions.Multiline);
 
@@ -38,7 +38,7 @@ namespace AssemblyComparer.Console
 
         static readonly Regex ReferenceVersionNumberRegexp = new Regex("(?<=.ver )([a-zA-Z0-9]+\\:){3}[a-zA-Z0-9]+", RegexOptions.Multiline);
 
-    #endregion
+        #endregion
 
         public string GetHashForComparison(string sourcePath)
         {
@@ -68,7 +68,7 @@ namespace AssemblyComparer.Console
                     CreateNoWindow = true,
                     RedirectStandardOutput = true,
                     FileName = "ildasm.exe",
-                    Arguments = $"/raw /nobar /text {sourcePath}"
+                    Arguments = $"/raw /nobar /text \"{sourcePath}\""
                 }
             };
             p.Start();
